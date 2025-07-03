@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FUTA Market Hub</title>
+    <title>FUTA Market Store</title>
     <style>
         * { 
     margin: 0; 
@@ -587,11 +587,196 @@ tr:hover {
     transform-style: preserve-3d;
     backface-visibility: hidden;
 }
+
+/* Rating and Reviews Styles */
+.rating-display {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 10px 0;
+}
+
+.stars {
+    color: #ffd700;
+    font-size: 18px;
+}
+
+.rating-number {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.review-item {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.review-header {
+    display: flex;
+    justify-content: between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.review-rating {
+    display: flex;
+    gap: 2px;
+}
+
+.star-rating {
+    cursor: pointer;
+    font-size: 20px;
+    color: #ddd;
+    transition: color 0.2s;
+}
+
+.star-rating:hover,
+.star-rating.active {
+    color: #ffd700;
+}
+
+/* Enhanced Product Card Design */
+.product-card {
+    border: none;
+    border-radius: 25px;
+    padding: 0;
+    background: rgba(245, 156, 156, 0.95);
+    backdrop-filter: blur(15px);
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transform-style: preserve-3d;
+}
+
+.product-card:hover {
+    transform: translateY(-15px) rotateX(5deg);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+}
+
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    z-index: 1;
+}
+
+.product-image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 25px 25px 0 0;
+    height: 220px;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.1) rotate(2deg);
+}
+
+.product-content {
+    padding: 25px;
+    position: relative;
+}
+
+.product-title {
+    font-size: 1.4em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #2c3e50;
+    line-height: 1.3;
+}
+
+.product-description {
+    color: #555;
+    font-size: 0.95em;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.product-price {
+    font-size: 1.8em;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+}
+
+.product-availability {
+    background: linear-gradient(135deg, #00d2ff 0%, #4484df 100%);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.85em;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.seller-info {
+    background: linear-gradient rgb(108, 6, 204);
+    border: 10px solid rgba(149, 221, 14, 0.2);
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 15px;
+    font-size: 0.9em;
+}
+
+.seller-name {
+    font-weight: 700;
+    color: #57058d;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.product-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.product-actions .btn {
+    flex: 1;
+    font-size: 0.9em;
+    padding: 12px;
+}
+
+.category-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(145, 136, 136, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 1.2em;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>🛍️ FUTA Market Hub</h1>
+        <h1>🛍️ FUTA Market Store</h1>
         <p>Your Campus Marketplace for Goods & Services</p>
     </div>
 
@@ -603,6 +788,7 @@ tr:hover {
         <button id="adminBtn" class="hidden" onclick="showSection('admin')">⚙️ Admin</button>
         <button class="cart" onclick="showCart()">🛒 Cart <span id="cartCount" class="cart-count">0</span></button>
         <button id="logoutBtn" class="hidden" onclick="logout()">🚪 Logout</button>
+        <button id="purchasesBtn" class="hidde" onclick="showMyPurchases()">📋 My Purchases</button>
     </div>
 
     <div class="container">
@@ -711,6 +897,8 @@ tr:hover {
                         <option value="400">400 Level</option>
                         <option value="500">500 Level</option>
                         <option value="Graduate">Graduate</option>
+                        <option value="Post Graduate">Post Graduate</option>
+                        <option value="Staff">Staff</option>
                         <option value="Other">Other</option>
                     </select>
                 </div>
@@ -734,6 +922,12 @@ tr:hover {
                     <label>Account Name:</label>
                     <input type="text" id="regAccountName" required>
                 </div>
+                <div class="form-group">
+    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+        <input type="checkbox" id="userAgreement" required style="width: auto;">
+        <span>I agree to the <a href="#" onclick="showTermsModal()" style="color: #667eea;">Terms and Conditions</a></span>
+    </label>
+</div>
                 <button type="submit" class="btn">Create Account</button>
             </form>
         </div>
@@ -747,6 +941,8 @@ tr:hover {
                 <p>Products ₦5,000 and above: <span id="highFee">5</span>% of product price</p>
                 <p>Service Advertisement: ₦<span id="serviceFee">1000</span> per week</p>
             </div>
+
+            <div id="sellerStats"></div>
 
             <div style="margin: 20px 0;">
                 <button class="btn" onclick="showAddProduct()">➕ Add Product</button>
@@ -892,6 +1088,72 @@ tr:hover {
             </div>
         </div>
     </div>
+    <!-- Review Modal -->
+<div id="reviewModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('reviewModal')">&times;</span>
+        <h2>⭐ Rate Your Purchase</h2>
+        <form onsubmit="submitReview(event)">
+            <div class="form-group">
+                <label>Rating:</label>
+                <div class="review-rating">
+                    <span class="star-rating" onclick="setRating(1)">★</span>
+                    <span class="star-rating" onclick="setRating(2)">★</span>
+                    <span class="star-rating" onclick="setRating(3)">★</span>
+                    <span class="star-rating" onclick="setRating(4)">★</span>
+                    <span class="star-rating" onclick="setRating(5)">★</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Review:</label>
+                <textarea id="reviewComment" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn">Submit Review</button>
+        </form>
+    </div>
+</div>
+
+<!-- Seller Reviews Modal -->
+<div id="sellerReviewsModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('sellerReviewsModal')">&times;</span>
+        <h2 id="sellerReviewsTitle">Seller Reviews</h2>
+        <div id="sellerReviewsList"></div>
+    </div>
+</div>
+
+<!-- My Purchases Modal -->
+<div id="purchasesModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('purchasesModal')">&times;</span>
+        <h2>📋 My Purchases</h2>
+        <div id="purchasesList"></div>
+    </div>
+</div>
+
+<!-- Terms and Conditions Modal -->
+<div id="termsModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('termsModal')">&times;</span>
+        <h2>📜 Terms and Conditions</h2>
+        <div style="max-height: 400px; overflow-y: auto; padding: 10px;">
+            <h3>1. Platform Usage</h3>
+            <p>By using FUTA Market Store, you agree to conduct all transactions with honesty and integrity.</p>
+            
+            <h3>2. Payment Terms</h3>
+            <p>All payments are held in escrow until buyer confirms receipt and satisfaction with the product.</p>
+            
+            <h3>3. Platform Fees</h3>
+            <p>Platform fees are automatically calculated and deducted from seller earnings.</p>
+            
+            <h3>4. Dispute Resolution</h3>
+            <p>Any disputes will be resolved through the platform's mediation system.</p>
+            
+            <h3>5. Account Responsibility</h3>
+            <p>Users are responsible for maintaining account security and accurate information.</p>
+        </div>
+    </div>
+</div>
 
     <script>
        // Global variables with localStorage persistence
@@ -900,6 +1162,7 @@ let products = JSON.parse(localStorage.getItem('products')) || [];
 let users = JSON.parse(localStorage.getItem('users')) || [];
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let platformFees = JSON.parse(localStorage.getItem('platformFees')) || { low: 250, high: 5, service: 1000 };
+let escrowTransactions = JSON.parse(localStorage.getItem('escrowTransactions')) || [];
 
 // Initialize admin user if not exists
 if (!users.find(u => u.isAdmin)) {
@@ -927,13 +1190,38 @@ function saveData() {
     localStorage.setItem('users', JSON.stringify(users));
     localStorage.setItem('cart', JSON.stringify(cart));
     localStorage.setItem('platformFees', JSON.stringify(platformFees));
+    localStorage.setItem('escrowTransactions', JSON.stringify(escrowTransactions));
+
 }
 
-// Navigation functions
+// Replace the existing showSection function with this enhanced version
 function showSection(section) {
+    // Admin access restriction
+    if (section === 'admin' && (!currentUser || !currentUser.isAdmin)) {
+        alert('Access denied! Admin privileges required.');
+        return;
+    }
+    
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
     document.getElementById(section).classList.add('active');
     if (section === 'home') displayProducts();
+    // Add this to the showSection function when section === 'dashboard'
+if (section === 'dashboard' && currentUser && !currentUser.isAdmin) {
+    document.getElementById('sellerStats').innerHTML = displaySellerStats();
+}
+}
+
+// Modify updateUIForUser function
+function updateUIForUser() {
+    const elements = ['dashboardBtn', 'logoutBtn'];
+    elements.forEach(id => document.getElementById(id).classList.toggle('hidden', !currentUser));
+    
+    // Only show admin button for actual admin users
+    document.getElementById('adminBtn').classList.toggle('hidden', !currentUser || !currentUser.isAdmin);
+    
+    if (currentUser?.isAdmin) {
+        updateAdminStats();
+    }
 }
 
 // Authentication functions
@@ -1053,26 +1341,38 @@ function displayProducts() {
     const container = document.getElementById('productsContainer');
     const filteredProducts = products.filter(p => p.quantity > 0);
     
-    container.innerHTML = filteredProducts.map(product => `
-        <div class="product-card">
-            ${product.isService ? '<div class="service-banner">🔔 Service Advertisement</div>' : ''}
-            <img src="${product.image}" alt="${product.name}" class="product-image">
-            <div class="category-emoji">${product.category.split(' ')[0]}</div>
-            <h3>${product.name}</h3>
-            <p>${product.description}</p>
-            <p><strong>₦${product.price.toLocaleString()}</strong></p>
-            <p><small>Available: ${product.quantity}</small></p>
-            <div class="seller-info">
-                <strong>Seller:</strong> ${product.sellerName}<br>
-                <strong>Department:</strong> ${product.sellerDepartment}<br>
-                <strong>Level:</strong> ${product.sellerLevel}
+    container.innerHTML = filteredProducts.map(product => {
+        const rating = displaySellerRating(product.sellerId);
+        
+        return `
+            <div class="product-card">
+                ${product.isService ? '<div class="service-banner">🔔 Service Advertisement</div>' : ''}
+                <div class="product-image-container">
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="category-badge">${product.category.split(' ')[0]}</div>
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">${product.name}</h3>
+                    <p class="product-description">${product.description}</p>
+                    <div class="product-price">₦${product.price.toLocaleString()}</div>
+                    <div class="product-availability">📦 ${product.quantity} available</div>
+                    
+                    <div class="seller-info">
+                        <div class="seller-name">${product.sellerName}</div>
+                        <div><strong>Department:</strong> ${product.sellerDepartment}</div>
+                        <div><strong>Level:</strong> ${product.sellerLevel}</div>
+                        ${rating}
+                        <button class="btn" style="margin-top: 10px; padding: 5px 15px; font-size: 0.8em;" onclick="showSellerReviews('${product.sellerId}')">View Reviews</button>
+                    </div>
+                    
+                    <div class="product-actions">
+                        <button class="btn btn-success" onclick="buyProduct('${product.id}')">💳 Buy Now</button>
+                        <button class="btn" onclick="addToCart('${product.id}')">🛒 Add to Cart</button>
+                    </div>
+                </div>
             </div>
-            <div style="margin-top: 10px;">
-                <button class="btn" onclick="buyProduct('${product.id}')">💳 Buy Now</button>
-                <button class="btn" onclick="addToCart('${product.id}')">🛒 Add to Cart</button>
-            </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
 function searchProducts(query) {
@@ -1225,14 +1525,87 @@ function completePurchase() {
         return;
     }
     
+    if (!currentUser) {
+        alert('Please login to make a purchase');
+        return;
+    }
+    
     const total = product.price * quantity;
+    const transaction = {
+        id: Date.now().toString(),
+        productId: product.id,
+        productName: product.name,
+        sellerId: product.sellerId,
+        buyerId: currentUser.id,
+        buyerName: currentUser.name,
+        quantity: quantity,
+        totalAmount: total,
+        status: 'pending', // pending, completed, disputed
+        date: new Date().toISOString(),
+        sellerAmount: total - product.platformFee
+    };
+    
+    escrowTransactions.push(transaction);
     product.quantity -= quantity;
     saveData();
     
-    alert(`Purchase successful!\n\nTotal: ₦${total.toLocaleString()}\nQuantity: ${quantity}\n\nContact seller via WhatsApp: ${users.find(u => u.id === product.sellerId)?.whatsapp || 'N/A'}`);
+    alert(`Purchase initiated!\n\nTotal: ₦${total.toLocaleString()}\nQuantity: ${quantity}\n\nYour payment is held in escrow. Please confirm receipt after delivery.`);
     
     closeModal('buyModal');
     displayProducts();
+}
+
+// New functions for escrow system
+function showMyPurchases() {
+    if (!currentUser) return;
+    
+    const myPurchases = escrowTransactions.filter(t => t.buyerId === currentUser.id);
+    const modal = document.getElementById('purchasesModal');
+    const container = document.getElementById('purchasesList');
+    
+    container.innerHTML = myPurchases.length === 0 ? 
+        '<p>No purchases yet</p>' :
+        myPurchases.map(transaction => `
+            <div class="review-item">
+                <h4>${transaction.productName}</h4>
+                <p><strong>Amount:</strong> ₦${transaction.totalAmount.toLocaleString()}</p>
+                <p><strong>Quantity:</strong> ${transaction.quantity}</p>
+                <p><strong>Status:</strong> <span style="color: ${transaction.status === 'completed' ? 'green' : 'orange'}">${transaction.status.toUpperCase()}</span></p>
+                <p><strong>Date:</strong> ${new Date(transaction.date).toLocaleDateString()}</p>
+                ${transaction.status === 'pending' ? `
+                    <div style="margin-top: 10px;">
+                        <button class="btn btn-success" onclick="confirmDelivery('${transaction.id}')">✅ Confirm Delivery</button>
+                        <button class="btn btn-danger" onclick="disputeTransaction('${transaction.id}')">⚠️ Report Issue</button>
+                    </div>
+                ` : ''}
+                ${transaction.status === 'completed' ? `
+                    <button class="btn" onclick="showReviewModal('${transaction.productId}', '${transaction.sellerId}')">⭐ Leave Review</button>
+                ` : ''}
+            </div>
+        `).join('');
+    
+    modal.style.display = 'block';
+}
+
+function confirmDelivery(transactionId) {
+    const transaction = escrowTransactions.find(t => t.id === transactionId);
+    if (transaction) {
+        transaction.status = 'completed';
+        transaction.completedDate = new Date().toISOString();
+        saveData();
+        alert('Delivery confirmed! Payment has been released to the seller.');
+        showMyPurchases();
+    }
+}
+
+function disputeTransaction(transactionId) {
+    const transaction = escrowTransactions.find(t => t.id === transactionId);
+    if (transaction) {
+        transaction.status = 'disputed';
+        saveData();
+        alert('Dispute reported. Admin will review this transaction.');
+        showMyPurchases();
+    }
 }
 
 // Dashboard functions
@@ -1324,6 +1697,46 @@ function updatePlatformFeeDisplay() {
     document.getElementById('lowFee').textContent = platformFees.low;
     document.getElementById('highFee').textContent = platformFees.high;
     document.getElementById('serviceFee').textContent = platformFees.service;
+}
+function calculateSellerRevenue(sellerId) {
+    const completedTransactions = escrowTransactions.filter(
+        t => t.sellerId === sellerId && t.status === 'completed'
+    );
+    
+    const totalRevenue = completedTransactions.reduce((sum, t) => sum + t.sellerAmount, 0);
+    const pendingAmount = escrowTransactions
+        .filter(t => t.sellerId === sellerId && t.status === 'pending')
+        .reduce((sum, t) => sum + t.sellerAmount, 0);
+    
+    return { totalRevenue, pendingAmount, transactionCount: completedTransactions.length };
+}
+
+function displaySellerStats() {
+    if (!currentUser) return;
+    
+    const revenue = calculateSellerRevenue(currentUser.id);
+    const userProducts = products.filter(p => p.sellerId === currentUser.id);
+    
+    return `
+        <div class="stats" style="margin: 20px 0;">
+            <div class="stat-card" style="background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%); color: white;">
+                <h3>₦${revenue.totalRevenue.toLocaleString()}</h3>
+                <p>Total Revenue</p>
+            </div>
+            <div class="stat-card" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); color: white;">
+                <h3>₦${revenue.pendingAmount.toLocaleString()}</h3>
+                <p>Pending Revenue</p>
+            </div>
+            <div class="stat-card" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: white;">
+                <h3>${revenue.transactionCount}</h3>
+                <p>Completed Sales</p>
+            </div>
+            <div class="stat-card" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); color: white;">
+                <h3>${userProducts.length}</h3>
+                <p>Active Products</p>
+            </div>
+        </div>
+    `;
 }
 
 // Admin functions
@@ -1452,6 +1865,117 @@ window.onload = function() {
     updatePlatformFeeDisplay();
     updateUIForUser();
 };
+
+// Add to global variables section
+let reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+
+// Add to saveData function
+function saveData() {
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    localStorage.setItem('products', JSON.stringify(products));
+    localStorage.setItem('users', JSON.stringify(users));
+    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('platformFees', JSON.stringify(platformFees));
+    localStorage.setItem('reviews', JSON.stringify(reviews)); // ADD THIS LINE
+}
+
+// New functions for rating system
+function calculateSellerRating(sellerId) {
+    const sellerReviews = reviews.filter(r => r.sellerId === sellerId);
+    if (sellerReviews.length === 0) return { average: 0, count: 0 };
+    
+    const average = sellerReviews.reduce((sum, r) => sum + r.rating, 0) / sellerReviews.length;
+    return { average: Math.round(average * 10) / 10, count: sellerReviews.length };
+}
+
+function displaySellerRating(sellerId) {
+    const rating = calculateSellerRating(sellerId);
+    if (rating.count === 0) return '<span class="rating-display">No reviews yet</span>';
+    
+    const stars = '★'.repeat(Math.floor(rating.average)) + '☆'.repeat(5 - Math.floor(rating.average));
+    return `
+        <div class="rating-display">
+            <span class="stars">${stars}</span>
+            <span class="rating-number">${rating.average}</span>
+            <span>(${rating.count} reviews)</span>
+        </div>
+    `;
+}
+
+function showReviewModal(productId, sellerId) {
+    const modal = document.getElementById('reviewModal');
+    window.currentReviewProduct = productId;
+    window.currentReviewSeller = sellerId;
+    modal.style.display = 'block';
+}
+
+function setRating(rating) {
+    document.querySelectorAll('.star-rating').forEach((star, index) => {
+        star.classList.toggle('active', index < rating);
+    });
+    window.selectedRating = rating;
+}
+
+function submitReview(event) {
+    event.preventDefault();
+    if (!currentUser) {
+        alert('Please login to submit a review');
+        return;
+    }
+    
+    if (!window.selectedRating) {
+        alert('Please select a rating');
+        return;
+    }
+    
+    const review = {
+        id: Date.now().toString(),
+        productId: window.currentReviewProduct,
+        sellerId: window.currentReviewSeller,
+        buyerId: currentUser.id,
+        buyerName: currentUser.name,
+        rating: window.selectedRating,
+        comment: document.getElementById('reviewComment').value,
+        date: new Date().toLocaleDateString()
+    };
+    
+    reviews.push(review);
+    saveData();
+    closeModal('reviewModal');
+    alert('Review submitted successfully!');
+    displayProducts();
+}
+
+function showSellerReviews(sellerId) {
+    const sellerReviews = reviews.filter(r => r.sellerId === sellerId);
+    const seller = users.find(u => u.id === sellerId);
+    
+    const modal = document.getElementById('sellerReviewsModal');
+    const container = document.getElementById('sellerReviewsList');
+    
+    document.getElementById('sellerReviewsTitle').textContent = `Reviews for ${seller.name}`;
+    
+    container.innerHTML = sellerReviews.length === 0 ? 
+        '<p>No reviews yet</p>' :
+        sellerReviews.map(review => `
+            <div class="review-item">
+                <div class="review-header">
+                    <strong>${review.buyerName}</strong>
+                    <div class="review-rating">
+                        ${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}
+                    </div>
+                </div>
+                <p>${review.comment}</p>
+                <small>Date: ${review.date}</small>
+            </div>
+        `).join('');
+    
+    modal.style.display = 'block';
+}
+
+function showTermsModal() {
+    document.getElementById('termsModal').style.display = 'block';
+}
     </script>
 </body>
 </html>

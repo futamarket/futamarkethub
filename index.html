@@ -648,7 +648,7 @@ tr:hover {
     border: none;
     border-radius: 25px;
     padding: 0;
-    background: rgba(245, 156, 156, 0.95);
+    background: rgb(125, 245, 239);
     backdrop-filter: blur(15px);
     position: relative;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -772,25 +772,696 @@ tr:hover {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     z-index: 2;
 }
+        /* Mobile-style navigation */
+        .nav-mobile {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hamburger {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger:hover {
+            transform: scale(1.1);
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            backdrop-filter: blur(20px);
+            transition: left 0.3s ease;
+            z-index: 1001;
+            padding: 20px;
+            box-shadow: 2px 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .side-menu.active {
+            left: 0;
+        }
+
+        .side-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .side-menu-header h3 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .close-side-menu {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .side-menu-items {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .side-menu-items button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        .side-menu-items button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 1000;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Compact product cards for dashboard */
+        .compact-products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .compact-product-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .compact-product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .compact-product-image {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .compact-product-title {
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .compact-product-price {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .compact-product-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .compact-product-actions button {
+            flex: 1;
+            padding: 6px 10px;
+            font-size: 0.8em;
+            border-radius: 6px;
+        }
+
+        /* Payment modal styles */
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .payment-method {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .payment-method:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .payment-method.selected {
+            border-color: #fff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .payment-method h4 {
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+        }
+
+        .payment-method p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 0.9em;
+        }
+
+        .payment-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .payment-summary {
+            background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .payment-summary h4 {
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+
+        .payment-summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+        }
+
+        .payment-summary-total {
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+            padding-top: 15px;
+            margin-top: 15px;
+            font-size: 1.2em;
+            font-weight: 700;
+        }
+
+        /* Bank transfer instructions */
+        .bank-instructions {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .bank-details {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+
+        .copy-button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 0.8em;
+        }
+
+        /* Top navigation adjustments */
+        .nav {
+            display: none;
+        }
+
+        .nav-right button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            margin: 0 3px;
+            cursor: pointer;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .nav-right button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Admin specific styles */
+        .admin-only {
+            display: none;
+        }
+
+        .admin-only.visible {
+            display: block;
+        }
+
+        /* Order tracking */
+        .order-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+
+        .status-pending {
+            background: #ffc107;
+            color: #856404;
+        }
+
+        .status-paid {
+            background: #17a2b8;
+            color: white;
+        }
+
+        .status-delivered {
+            background: #28a745;
+            color: white;
+        }
+
+        .status-confirmed {
+            background: #007bff;
+            color: white;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .nav-mobile {
+                padding: 10px 15px;
+            }
+
+            .nav-right {
+                gap: 5px;
+            }
+
+            .nav-right button {
+                padding: 8px 12px;
+                font-size: 0.8em;
+            }
+
+            .side-menu {
+                width: 250px;
+                left: -250px;
+            }
+
+            .compact-products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .hamburger-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.hamburger-btn:hover {
+    transform: scale(1.05);
+}
+
+/* MOBILE MENU STYLES */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    padding: 20px;
+    box-shadow: 5px 0 15px rgba(0,0,0,0.3);
+}
+
+.mobile-menu-header {
+    color: white;
+    margin-bottom: 30px;
+    padding-top: 50px;
+}
+
+.mobile-menu-header h3 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.mobile-menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mobile-menu-item {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-item:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateX(5px);
+}
+
+/* PAYMENT MODAL STYLES */
+.payment-summary {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.payment-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 5px 0;
+}
+
+.payment-item.total {
+    border-top: 2px solid #333;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.payment-methods {
+    margin-top: 20px;
+}
+
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.payment-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.payment-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+/* PROCESSING ANIMATION */
+.processing-animation {
+    text-align: center;
+    padding: 40px;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* SUCCESS MODAL STYLES */
+.success-content {
+    text-align: center;
+    padding: 20px;
+}
+
+.success-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.success-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* SELLER DASHBOARD STYLES */
+.seller-product-card {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.seller-product-card:hover {
+    transform: translateY(-2px);
+}
+
+.seller-product-image {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    margin-right: 15px;
+}
+
+.seller-product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.seller-product-info {
+    flex: 1;
+}
+
+.seller-product-info h4 {
+    margin: 0 0 5px 0;
+    color: #333;
+    font-size: 16px;
+}
+
+.seller-product-info .price {
+    color: #667eea;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.seller-product-info .quantity,
+.seller-product-info .fee {
+    color: #666;
+    font-size: 12px;
+    margin: 3px 0;
+}
+
+.btn-small {
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.btn-small.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-small.btn-danger:hover {
+    background: #c82333;
+}
+
+/* TRANSFER PROCESSING STYLES */
+.transfer-processing {
+    text-align: center;
+    padding: 40px;
+}
+
+.transfer-success {
+    text-align: center;
+    padding: 20px;
+}
+
+.transfer-success .success-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .hamburger-btn {
+        display: block;
+    }
+    
+    .mobile-menu {
+        width: 250px;
+    }
+    
+    .payment-options {
+        flex-direction: column;
+    }
+    
+    .seller-product-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .seller-product-image {
+        margin: 0 0 10px 0;
+    }
+}
+
+@media (min-width: 769px) {
+    .hamburger-btn {
+        display: block; /* Always show hamburger button */
+    }
+}
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>🛍️ FUTA Market Store</h1>
-        <p>Your Campus Marketplace for Goods & Services</p>
+    
+    <!-- Mobile Navigation -->
+    <div class="nav-mobile">
+        <div class="nav-left">
+            <button id="hamburgerBtn" class="hamburger-btn">☰</button>
+            <h2 style="margin: 10; color: white;">🛍️ FUTA Market Store</h2>
+        </div>
+        <div class="nav-right">
+            <button onclick="showSection('register')">📝 Sign Up</button>
+            <button onclick="showSection('login')">🔐 Login</button>
+            <button class="cart" onclick="showCart()">🛒 Cart <span id="cartCount" class="cart-count">0</span></button>
+            <button id="purchasesBtn" onclick="showMyPurchases()">📋 My Purchases</button>
+        </div>
+    </div>
+    <div id="mobileMenu" class="mobile-menu">
+    <div class="mobile-menu-header">
+        <h3>Menu</h3>
     </div>
 
-    <div class="nav">
-        <button onclick="showSection('home')">🏠 Home</button>
-        <button onclick="showSection('login')">🔐 Login</button>
-        <button onclick="showSection('register')">📝 Register</button>
-        <button id="dashboardBtn" class="hidden" onclick="showSection('dashboard')">📊 Dashboard</button>
-        <button id="adminBtn" class="hidden" onclick="showSection('admin')">⚙️ Admin</button>
-        <button class="cart" onclick="showCart()">🛒 Cart <span id="cartCount" class="cart-count">0</span></button>
-        <button id="logoutBtn" class="hidden" onclick="logout()">🚪 Logout</button>
-        <button id="purchasesBtn" class="hidde" onclick="showMyPurchases()">📋 My Purchases</button>
+    <div class="mobile-menu-items">
+        <button class="mobile-menu-item" onclick="navigateAndCloseMenu('home')">🏠 Home</button>
+        <button class="mobile-menu-item" onclick="navigateAndCloseMenu('dashboard')" id="mobileDashboardBtn">📊 Dashboard</button>
+        <button class="mobile-menu-item" onclick="navigateAndCloseMenu('admin')" id="mobileAdminBtn">⚙️ Admin</button>
+    </div>
+</div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="toggleSideMenu()"></div>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('paymentModal')">&times;</span>
+            <h2>💳 Payment</h2>
+            <div id="paymentContent"></div>
+        </div>
     </div>
 
+    <!-- Order Confirmation Modal -->
+    <div id="confirmDeliveryModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('confirmDeliveryModal')">&times;</span>
+            <h2>📦 Confirm Delivery</h2>
+            <div id="deliveryConfirmContent"></div>
+        </div>
+    </div>
     <div class="container">
         <!-- HOME SECTION -->
         <div id="home" class="section active">
@@ -1001,19 +1672,56 @@ tr:hover {
                     <div class="form-group">
                         <label>Department:</label>
                         <select id="editDepartment" required>
-                            <option value="Computer Science">Computer Science</option>
-                            <option value="Electrical Engineering">Electrical Engineering</option>
-                            <option value="Project Management Technology">Project Management Technology</option>
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>
+                        <option value="Mechanical Engineering">Mechanical Engineering</option>
+                        <option value="Civil and Environmental Engineering">Civil and Environmental Engineering</option>
+                        <option value="Chemical Engineering">Chemical Engineering</option>
+                        <option value="Biomedical Engineering">Biomedical Engineering</option>
+                        <option value="Mechatronics Engineering">Mechatronics Engineering</option>
+                        <option value="Industrial and Production Engineering">Industrial and Production Engineering</option>
+                        <option value="Computer Engineering">Computer Engineering</option>
+                        <option value="Industrial Design">Industrial Design</option>
+                        <option value="Architecture">Architecture</option>
+                        <option value="Building Technology">Building Technology</option>
+                        <option value="Estate Management">Estate Management</option>
+                        <option value="Quantity Surveying">Quantity Surveying</option>
+                        <option value="Urban and Regional Planning">Urban and Regional Planning</option>
+                        <option value="Project Management Technology">Project Management Technology</option>
+                        <option value="Mining Engineering">Mining Engineering</option>
+                        <option value="Metallurgical and Materials Engineering">Metallurgical and Materials Engineering</option>
+                        <option value="Agricultural and Environmental Engineering">Agricultural and Environmental Engineering</option>
+                        <option value="Food Science Technology">Food Science Technology</option>
+                        <option value="Fisheries and Aquaculture Technology">Fisheries and Aquaculture Technology</option>
+                        <option value="Forestry and Wood Technology">Forestry and Wood Technology</option>
+                        <option value="Industrial Mathematics">Industrial Mathematics</option>
+                        <option value="Statistics">Statistics</option>
+                        <option value="Physics Electronics">Physics Electronics</option>
+                        <option value="Physics Energy">Physics Energy</option>
+                        <option value="Bio-Physics">Bio-Physics</option>
+                        <option value="Industrial Chemistry">Industrial Chemistry</option>
+                        <option value="Biology">Biology</option>
+                        <option value="Biochemistry">Biochemistry</option>
+                        <option value="Microbiology">Microbiology</option>
+                        <option value="Biotechnology">Biotechnology</option>
+                        <option value="Cybersecurity">Cybersecurity</option>
+                        <option value="Information Systems">Information Systems</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label>Level:</label>
                         <select id="editLevel" required>
-                            <option value="100">100 Level</option>
-                            <option value="200">200 Level</option>
-                            <option value="300">300 Level</option>
-                            <option value="400">400 Level</option>
-                            <option value="500">500 Level</option>
+                        <option value="Pre-Dgree">Pre-Dgree</option>
+                        <option value="UABS">UABS</option>
+                        <option value="100">100 Level</option>
+                        <option value="200">200 Level</option>
+                        <option value="300">300 Level</option>
+                        <option value="400">400 Level</option>
+                        <option value="500">500 Level</option>
+                        <option value="Graduate">Graduate</option>
+                        <option value="Post Graduate">Post Graduate</option>
+                        <option value="Staff">Staff</option>
+                        <option value="Other">Other</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -1024,6 +1732,19 @@ tr:hover {
                         <label>WhatsApp Number:</label>
                         <input type="tel" id="editWhatsApp" required>
                     </div>
+                    <div class="form-group">
+                    <label>Bank Name:</label>
+                    <input type="text" id="editBank" required>
+                </div>
+                <div class="form-group">
+                    <label>Account Number:</label>
+                    <input type="text" id="editAccount" required>
+                </div>
+                <div class="form-group">
+                    <label>Account Name:</label>
+                    <input type="text" id="editAccountName" required>
+                </div>
+
                     <button type="submit" class="btn">Update Profile</button>
                 </form>
             </div>
@@ -1163,6 +1884,7 @@ let users = JSON.parse(localStorage.getItem('users')) || [];
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let platformFees = JSON.parse(localStorage.getItem('platformFees')) || { low: 250, high: 5, service: 1000 };
 let escrowTransactions = JSON.parse(localStorage.getItem('escrowTransactions')) || [];
+let isMobileMenuOpen = false;
 
 // Initialize admin user if not exists
 if (!users.find(u => u.isAdmin)) {
@@ -1976,6 +2698,369 @@ function showSellerReviews(sellerId) {
 function showTermsModal() {
     document.getElementById('termsModal').style.display = 'block';
 }
+// Add hamburger menu toggle function
+function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const hamburger = document.getElementById('hamburgerBtn');
+    
+    isMobileMenuOpen = !isMobileMenuOpen;
+    
+    if (isMobileMenuOpen) {
+        mobileMenu.style.transform = 'translateX(0)';
+        hamburger.innerHTML = '✕';
+    } else {
+        mobileMenu.style.transform = 'translateX(-100%)';
+        hamburger.innerHTML = '☰';
+    }
+}
+
+// Close mobile menu when clicking outside
+function closeMobileMenuOnOutsideClick(event) {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const hamburger = document.getElementById('hamburgerBtn');
+    
+    if (isMobileMenuOpen && !mobileMenu.contains(event.target) && !hamburger.contains(event.target)) {
+        toggleMobileMenu();
+    }
+}
+
+// Add event listener for outside clicks
+document.addEventListener('click', closeMobileMenuOnOutsideClick);
+
+// 2. ENHANCED ADMIN VISIBILITY (Replace existing updateUIForUser function)
+function updateUIForUser() {
+    const elements = ['dashboardBtn', 'logoutBtn'];
+    elements.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.classList.toggle('hidden', !currentUser);
+        }
+    });
+    
+    // Admin button visibility - only show for actual admin users
+    const adminBtn = document.getElementById('adminBtn');
+    if (adminBtn) {
+        adminBtn.classList.toggle('hidden', !currentUser || !currentUser.isAdmin);
+    }
+    
+    // Update mobile menu admin visibility
+    const mobileAdminBtn = document.getElementById('mobileAdminBtn');
+    if (mobileAdminBtn) {
+        mobileAdminBtn.classList.toggle('hidden', !currentUser || !currentUser.isAdmin);
+    }
+    
+    if (currentUser?.isAdmin) {
+        updateAdminStats();
+    }
+}
+
+// 3. ENHANCED PLATFORM FEE CALCULATION (Replace existing completePurchase function)
+function completePurchase() {
+    const quantity = parseInt(document.getElementById('buyQuantity').value);
+    const product = window.currentPurchase;
+    
+    if (quantity > product.quantity) {
+        alert('Not enough stock available!');
+        return;
+    }
+    
+    if (!currentUser) {
+        alert('Please login to make a purchase');
+        return;
+    }
+    
+    const pricePerUnit = product.price;
+    const platformFeePerUnit = product.platformFee;
+    const totalPrice = pricePerUnit * quantity;
+    const totalPlatformFee = platformFeePerUnit * quantity; // Fee per unit * quantity
+    const sellerAmount = totalPrice - totalPlatformFee;
+    
+    // Show payment modal instead of directly completing
+    showPaymentModal(product, quantity, totalPrice, totalPlatformFee, sellerAmount);
+}
+
+// 4. PAYMENT SYSTEM IMPLEMENTATION
+function showPaymentModal(product, quantity, totalPrice, totalPlatformFee, sellerAmount) {
+    const modal = document.getElementById('paymentModal');
+    const paymentDetails = document.getElementById('paymentDetails');
+    
+    paymentDetails.innerHTML = `
+        <div class="payment-summary">
+            <h3>Payment Summary</h3>
+            <div class="payment-item">
+                <span>Product:</span>
+                <span>${product.name}</span>
+            </div>
+            <div class="payment-item">
+                <span>Quantity:</span>
+                <span>${quantity}</span>
+            </div>
+            <div class="payment-item">
+                <span>Price per unit:</span>
+                <span>₦${product.price.toLocaleString()}</span>
+            </div>
+            <div class="payment-item">
+                <span>Subtotal:</span>
+                <span>₦${totalPrice.toLocaleString()}</span>
+            </div>
+            <div class="payment-item">
+                <span>Platform Fee:</span>
+                <span>₦${totalPlatformFee.toLocaleString()}</span>
+            </div>
+            <div class="payment-item total">
+                <span><strong>Total Amount:</strong></span>
+                <span><strong>₦${totalPrice.toLocaleString()}</strong></span>
+            </div>
+        </div>
+        
+        <div class="payment-methods">
+            <h4>Select Payment Method:</h4>
+            <div class="payment-options">
+                <button class="payment-btn" onclick="processPayment('card', ${JSON.stringify({product, quantity, totalPrice, totalPlatformFee, sellerAmount}).replace(/"/g, '&quot;')})">
+                    💳 Card Payment
+                </button>
+                <button class="payment-btn" onclick="processPayment('bank', ${JSON.stringify({product, quantity, totalPrice, totalPlatformFee, sellerAmount}).replace(/"/g, '&quot;')})">
+                    🏦 Bank Transfer
+                </button>
+                <button class="payment-btn" onclick="processPayment('wallet', ${JSON.stringify({product, quantity, totalPrice, totalPlatformFee, sellerAmount}).replace(/"/g, '&quot;')})">
+                    👛 Digital Wallet
+                </button>
+            </div>
+        </div>
+    `;
+    
+    modal.style.display = 'block';
+}
+
+function processPayment(paymentMethod, paymentData) {
+    // Simulate payment processing
+    const processingModal = document.getElementById('processingModal');
+    const processingMessage = document.getElementById('processingMessage');
+    
+    processingMessage.innerHTML = `
+        <div class="processing-animation">
+            <div class="spinner"></div>
+            <p>Processing your ${paymentMethod} payment...</p>
+            <p>Please wait while we complete your transaction.</p>
+        </div>
+    `;
+    
+    closeModal('paymentModal');
+    processingModal.style.display = 'block';
+    
+    // Simulate processing time
+    setTimeout(() => {
+        completePaymentProcess(paymentData);
+        closeModal('processingModal');
+    }, 3000);
+}
+
+function completePaymentProcess(paymentData) {
+    const { product, quantity, totalPrice, totalPlatformFee, sellerAmount } = paymentData;
+    
+    const transaction = {
+        id: Date.now().toString(),
+        productId: product.id,
+        productName: product.name,
+        sellerId: product.sellerId,
+        buyerId: currentUser.id,
+        buyerName: currentUser.name,
+        quantity: quantity,
+        totalAmount: totalPrice,
+        platformFee: totalPlatformFee,
+        sellerAmount: sellerAmount,
+        status: 'pending',
+        date: new Date().toISOString(),
+        paymentCompleted: true
+    };
+    
+    escrowTransactions.push(transaction);
+    product.quantity -= quantity;
+    saveData();
+    
+    // Show success message
+    const successModal = document.getElementById('successModal');
+    const successMessage = document.getElementById('successMessage');
+    
+    successMessage.innerHTML = `
+        <div class="success-content">
+            <div class="success-icon">✅</div>
+            <h3>Payment Successful!</h3>
+            <p>Your payment of <strong>₦${totalPrice.toLocaleString()}</strong> has been processed successfully.</p>
+            <p>Your funds are held in escrow until you confirm delivery.</p>
+            <p><strong>Transaction ID:</strong> ${transaction.id}</p>
+            <div class="success-actions">
+                <button class="btn" onclick="closeModal('successModal'); showMyPurchases();">View My Purchases</button>
+                <button class="btn" onclick="closeModal('successModal'); showSection('home');">Continue Shopping</button>
+            </div>
+        </div>
+    `;
+    
+    successModal.style.display = 'block';
+    closeModal('buyModal');
+    displayProducts();
+}
+
+// 5. ENHANCED DELIVERY CONFIRMATION WITH BANK TRANSFER
+function confirmDelivery(transactionId) {
+    const transaction = escrowTransactions.find(t => t.id === transactionId);
+    if (!transaction) return;
+    
+    const seller = users.find(u => u.id === transaction.sellerId);
+    if (!seller) return;
+    
+    // Show confirmation modal
+    const confirmModal = document.getElementById('confirmDeliveryModal');
+    const confirmContent = document.getElementById('confirmDeliveryContent');
+    
+    confirmContent.innerHTML = `
+        <div class="confirm-delivery">
+            <h3>Confirm Delivery</h3>
+            <p>Are you satisfied with the product delivery?</p>
+            <div class="transaction-details">
+                <p><strong>Product:</strong> ${transaction.productName}</p>
+                <p><strong>Amount:</strong> ₦${transaction.totalAmount.toLocaleString()}</p>
+                <p><strong>Seller:</strong> ${seller.name}</p>
+            </div>
+            <div class="delivery-actions">
+                <button class="btn btn-success" onclick="processBankTransfer('${transactionId}')">
+                    ✅ Yes, Transfer Payment to Seller
+                </button>
+                <button class="btn btn-danger" onclick="closeModal('confirmDeliveryModal')">
+                    ❌ No, I have an issue
+                </button>
+            </div>
+        </div>
+    `;
+    
+    confirmModal.style.display = 'block';
+}
+
+function processBankTransfer(transactionId) {
+    const transaction = escrowTransactions.find(t => t.id === transactionId);
+    const seller = users.find(u => u.id === transaction.sellerId);
+    
+    if (!transaction || !seller) return;
+    
+    // Simulate bank transfer processing
+    const transferModal = document.getElementById('transferModal');
+    const transferMessage = document.getElementById('transferMessage');
+    
+    transferMessage.innerHTML = `
+        <div class="transfer-processing">
+            <div class="spinner"></div>
+            <p>Processing bank transfer...</p>
+            <p>Transferring ₦${transaction.sellerAmount.toLocaleString()} to ${seller.name}</p>
+            <p>Bank: ${seller.bank}</p>
+            <p>Account: ${seller.account}</p>
+        </div>
+    `;
+    
+    closeModal('confirmDeliveryModal');
+    transferModal.style.display = 'block';
+    
+    setTimeout(() => {
+        // Complete the transaction
+        transaction.status = 'completed';
+        transaction.completedDate = new Date().toISOString();
+        transaction.bankTransferCompleted = true;
+        saveData();
+        
+        // Show success message
+        transferMessage.innerHTML = `
+            <div class="transfer-success">
+                <div class="success-icon">✅</div>
+                <h3>Transfer Successful!</h3>
+                <p>₦${transaction.sellerAmount.toLocaleString()} has been transferred to ${seller.name}</p>
+                <p>Bank: ${seller.bank}</p>
+                <p>Account: ${seller.account} (${seller.accountName})</p>
+                <button class="btn" onclick="closeModal('transferModal'); showMyPurchases();">Close</button>
+            </div>
+        `;
+        
+        // Auto-close after 5 seconds
+        setTimeout(() => {
+            closeModal('transferModal');
+            showMyPurchases();
+        }, 5000);
+    }, 3000);
+}
+
+// 6. ENHANCED SELLER DASHBOARD WITH SMALLER PRODUCT DISPLAY
+function displayUserProducts() {
+    if (!currentUser) return;
+    
+    const userProducts = products.filter(p => p.sellerId === currentUser.id);
+    const container = document.getElementById('userProductsList');
+    
+    container.innerHTML = userProducts.length === 0 ? '<p>You haven\'t added any products yet.</p>' :
+        userProducts.map(product => `
+            <div class="seller-product-card">
+                <div class="seller-product-image">
+                    <img src="${product.image}" alt="${product.name}">
+                </div>
+                <div class="seller-product-info">
+                    <h4>${product.name}</h4>
+                    <p class="price">₦${product.price.toLocaleString()}</p>
+                    <p class="quantity">Stock: ${product.quantity}</p>
+                    <p class="fee">Platform Fee: ₦${product.platformFee.toFixed(2)}</p>
+                    <button class="btn-small btn-danger" onclick="deleteProduct('${product.id}')">Delete</button>
+                </div>
+            </div>
+        `).join('');
+}
+
+// ADDITIONAL HELPER FUNCTIONS
+
+// Function to close mobile menu when navigation occurs
+function navigateAndCloseMenu(section) {
+    if (isMobileMenuOpen) {
+        toggleMobileMenu();
+    }
+    showSection(section);
+}
+
+// Enhanced showSection function to handle mobile menu
+function showSection(section) {
+    // Close mobile menu if open
+    if (isMobileMenuOpen) {
+        toggleMobileMenu();
+    }
+    
+    // Admin access restriction
+    if (section === 'admin' && (!currentUser || !currentUser.isAdmin)) {
+        alert('Access denied! Admin privileges required.');
+        return;
+    }
+    
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById(section).classList.add('active');
+    
+    if (section === 'home') displayProducts();
+    if (section === 'dashboard' && currentUser && !currentUser.isAdmin) {
+        document.getElementById('sellerStats').innerHTML = displaySellerStats();
+    }
+}
+
+// Add responsive behavior for window resize
+window.addEventListener('resize', function() {
+    if (window.innerWidth > 768 && isMobileMenuOpen) {
+        toggleMobileMenu();
+    }
+});
+
+// Initialize enhanced features on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize hamburger menu
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', toggleMobileMenu);
+    }
+    
+    // Initialize other features
+    updateUIForUser();
+});
+
     </script>
 </body>
 </html>
